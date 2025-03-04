@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sean Durkin - Design Portfolio</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #000000; /* Black background */
+            color: #d4e8d4; /* Light green text */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        /* Navigation Menu */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #1a1a1a; /* Darker black shade for nav */
+            padding: 10px 15px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-right: 20px; /* Shift nav bar left */
+            box-sizing: border-box;
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.8em;
+            color: #a8d5a8; /* Light green */
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .nav-menu li {
+            margin-left: 15px;
+        }
+        .nav-menu a {
+            color: #a8d5a8;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 8px 12px;
+            transition: color 0.3s, background 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #000000;
+            background: #a8d5a8;
+            border-radius: 5px;
+        }
+        /* Home Section */
+        .home-section {
+            padding: 100px 0 60px;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a); /* Black gradient */
+            color: #d4e8d4;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .home-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            text-align: left;
+            padding: 0 15px;
+            gap: 15px;
+            justify-content: flex-start;
+        }
+        .home-text {
+            flex: 1;
+            min-width: 280px;
+            order: 2;
+            margin-left: 20px;
+        }
+        .home-text h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            color: #a8d5a8; /* Light green */
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        }
+        .home-text p {
+            font-size: 1em;
+        }
+        .home-photo {
+            flex: 0 0 250px;
+            max-width: 250px;
+            order: 1;
+        }
+        .home-photo img {
+            width: 100%;
+            border-radius: 50%;
+            border: 4px solid #a8d5a8; /* Light green border */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        /* Projects Section */
+        .projects-section {
+            padding: 60px 0;
+            background: #000000; /* Solid black */
+            color: #d4e8d4;
+        }
+        .projects-section h2 {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #a8d5a8;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        }
+        .project {
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        .project h3 {
+            font-size: 1.8em;
+            color: #a8d5a8;
+            margin: 0;
+            padding: 12px;
+            background: #1a1a1a; /* Darker black */
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
+            touch-action: manipulation;
+        }
+        .project h3:hover, .project h3:active {
+            background: #a8d5a8;
+            color: #000000;
+        }
+        .project-content {
+            display: none;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05); /* Subtle overlay */
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+        .project-content p {
+            font-size: 1em;
+            margin: 0 0 15px;
+        }
+        .image-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        /* Specific styling for Canva & NYT gallery */
+        #project3 .image-gallery {
+            display: flex;
+            flex-direction: column; /* Stack images vertically */
+            align-items: center;
+            gap: 15px;
+        }
+        /* Specific styling for Homework Tracker gallery */
+        #project2 .image-gallery {
+            display: flex;
+            flex-direction: column; /* Center video */
+            align-items: center;
+            gap: 15px;
+        }
+        /* Specific styling for SnugLife gallery */
+        #project1 .image-gallery {
+            display: flex;
+            flex-direction: row; /* logo.png on left, a.png/a1.png stacked on right */
+            justify-content: center;
+            align-items: center; /* Center logo.png vertically with stacked images */
+            gap: 20px;
+        }
+        .snuglife-stack {
+            display: flex;
+            flex-direction: column; /* Stack a.png and a1.png vertically */
+            gap: 15px;
+        }
+        .image-box {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        /* Specific styling for Homework Tracker video box */
+        #project2 .image-box {
+            min-width: 450px; /* Matches other projects */
+            max-width: 500px; /* Matches other projects */
+            padding: 10px;
+        }
+        #project2 .homework-tracker-box video {
+            width: 400px; /* Fits nicely in box */
+            height: auto; /* Maintains aspect ratio */
+            border-radius: 10px;
+            border: 3px solid #a8d5a8;
+        }
+        /* Specific styling for SnugLife images */
+        .snuglife-image-box {
+            min-width: 400px; /* Larger for logo.png */
+            max-width: 450px;
+        }
+        .snuglife-large-box {
+            min-width: 450px; /* Larger for a.png and a1.png */
+            max-width: 500px;
+            padding: 5px; /* Reduced padding to fit image better */
+        }
+        /* Styling for Canva & NYT images */
+        .project3-image-box {
+            min-width: 450px; /* Original size retained */
+            max-width: 500px;
+        }
+        .image-box img, .image-box video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 3px solid #a8d5a8;
+        }
+        .slides-container {
+            margin: 15px auto;
+            min-width: 450px; /* Match project3-image-box */
+            max-width: 500px; /* Match project3-image-box */
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .slides-container iframe {
+            width: 100%;
+            height: 300px; /* Adjusted to a reasonable height */
+            border: 3px solid #a8d5a8;
+            border-radius: 10px;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                right: 0;
+                background: #1a1a1a;
+                width: 180px;
+                border-radius: 0 0 0 8px;
+                box-shadow: -2px 2px 10px rgba(0,0,0,0.5);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-menu li {
+                margin: 8px 0;
+                text-align: right;
+                padding-right: 15px;
+            }
+            .nav-menu a {
+                font-size: 1em;
+                padding: 8px 12px;
+            }
+            .home-section {
+                padding: 80px 0 40px;
+            }
+            .home-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 0 10px;
+                gap: 10px;
+            }
+            .home-text {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+            .home-text h1 {
+                font-size: 2em;
+            }
+            .home-text p {
+                font-size: 0.9em;
+            }
+            .home-photo {
+                flex: 0 0 200px;
+                max-width: 200px;
+            }
+            .projects-section {
+                padding: 40px 0;
+            }
+            .projects-section h2 {
+                font-size: 2em;
+            }
+            .project h3 {
+                font-size: 1.4em;
+            }
+            .image-gallery {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            #project2 .image-gallery {
+                flex-direction: column; /* Stack on smaller screens */
+                align-items: center;
+            }
+            #project2 .image-box {
+                min-width: 400px; /* Adjusted for medium screens */
+                max-width: 100%;
+            }
+            #project2 .homework-tracker-box video {
+                width: 350px; /* Adjusted for medium screens */
+                height: auto;
+            }
+            #project1 .image-gallery {
+                flex-direction: column; /* Stack everything on smaller screens */
+                align-items: center;
+            }
+            .snuglife-stack {
+                flex-direction: column; /* Already stacked, just ensuring consistency */
+            }
+            .image-box {
+                min-width: 180px;
+                max-width: 100%;
+            }
+            .snuglife-image-box {
+                min-width: 350px; /* Adjusted for medium screens */
+                max-width: 100%;
+            }
+            .snuglife-large-box {
+                min-width: 400px; /* Adjusted for medium screens */
+                max-width: 100%;
+            }
+            .project3-image-box {
+                min-width: 400px; /* Adjusted for medium screens */
+                max-width: 100%;
+            }
+            .slides-container {
+                min-width: 400px; /* Adjusted for medium screens */
+                max-width: 100%;
+            }
+            .slides-container iframe {
+                height: 250px; /* Adjusted for medium screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .home-text h1 {
+                font-size: 1.8em;
+            }
+            .home-text p {
+                font-size: 0.85em;
+            }
+            .home-photo {
+                flex: 0 0 150px;
+                max-width: 150px;
+            }
+            .projects-section h2 {
+                font-size: 1.8em;
+            }
+            .project h3 {
+                font-size: 1.2em;
+            }
+            .image-box {
+                min-width: 180px;
+                max-width: 100%;
+            }
+            #project2 .image-box {
+                min-width: 350px; /* Adjusted for small screens */
+                max-width: 100%;
+            }
+            #project2 .homework-tracker-box video {
+                width: 300px; /* Adjusted for small screens */
+                height: auto;
+            }
+            .snuglife-image-box {
+                min-width: 300px; /* Adjusted for small screens */
+                max-width: 100%;
+            }
+            .snuglife-large-box {
+                min-width: 350px; /* Adjusted for small screens */
+                max-width: 100%;
+            }
+            .project3-image-box {
+                min-width: 350px; /* Adjusted for small screens */
+                max-width: 100%;
+            }
+            .slides-container {
+                min-width: 350px; /* Adjusted for small screens */
+                max-width: 100%;
+            }
+            .slides-container iframe {
+                height: 200px; /* Adjusted for small screens */
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home" onclick="smoothScroll('home-section')">Home</a></li>
+            <li><a href="#projects" onclick="smoothScroll('projects-section')">Projects</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home-section" class="home-section">
+        <div class="container">
+            <div class="home-content">
+                <div class="home-photo">
+                    <img src="myself.jpg" alt="Sean Durkin">
+                </div>
+                <div class="home-text">
+                    <h1>Welcome to My Portfolio</h1>
+                    <p>I’m a digital marketer and UX/UI designer passionate about creating engaging user experiences and impactful visual communication. With a Bachelor of Arts in Emerging Technology in Business and Design (May 2026) from Miami University, I specialize in digital marketing, social media strategy, and user experience design—bridging creativity with technology to drive meaningful results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects-section" class="projects-section">
+        <div class="container">
+            <h2>My Projects</h2>
+            
+            <!-- Project 1: Canva & NYT Usability Research -->
+            <div class="project">
+                <h3 onclick="toggleProject('project3')">Canva & NYT Usability Research </h3>
+                <div id="project3" class="project-content">
+                    <p>Conducted user experience design research for Canva and The New York Times, focusing on improving digital platform accessibility, usability, and user engagement. This involved analyzing user behavior, identifying pain points, and providing actionable design recommendations to enhance overall user satisfaction. Through usability testing, surveys, and data analysis, I contributed to refining the user interface and optimizing key interactions to create a more intuitive and seamless experience.</p>
+                    <div class="image-gallery">
+                        <div class="image-box project3-image-box">
+                            <img src="nyt.png" alt="Project 3 Image 1">
+                        </div>
+                        <div class="image-box project3-image-box">
+                            <img src="nyt2.png" alt="Project 3 Image 2">
+                        </div>
+                    </div>
+                    <div class="slides-container">
+                        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSAa75fNzQOheZg1nxQHTzSDiXm_GCD6UdtXv6Rf1ut9dq_cba0P8kgG9-6s2Hyw01m3L9N6GCxdTA9/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Homework Tracker App -->
+            <div class="project">
+                <h3 onclick="toggleProject('project2')">Homework Tracker App</h3>
+                <div id="project2" class="project-content">
+                    <p>I designed and developed a mobile homework tracking application in Figma, focusing on usability and intuitive task management. Through multiple iterations, I created wireframes and interactive prototypes to refine the app’s layout, navigation, and functionality. User feedback played a key role in shaping the design, leading to improvements in task organization, calendar integration, and notification reminders. By testing and iterating on different design elements, I ensured a seamless and engaging user experience, making the final prototype both functional and visually appealing.</p>
+                    <div class="image-gallery">
+                        <div class="image-box homework-tracker-box">
+                            <video controls>
+                                <source src="figma.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: SnugLife -->
+            <div class="project">
+                <h3 onclick="toggleProject('project1')">SnugLife</h3>
+                <div id="project1" class="project-content">
+                    <p>SnugLife is an ongoing project where I am continuously refining the brand and its marketing strategy. While I have conducted market research, developed branding, and outlined a digital strategy, I am still working on finalizing product designs, expanding consumer outreach, and exploring potential sales channels. As I continue to test different marketing approaches and gather feedback, my goal is to create a strong, recognizable brand that resonates with college students and builds a loyal customer base.</p>
+                    <div class="image-gallery">
+                        <div class="image-box snuglife-image-box">
+                            <img src="logo.png" alt="SnugLife Image 1">
+                        </div>
+                        <div class="snuglife-stack">
+                            <div class="image-box snuglife-large-box">
+                                <img src="a.png" alt="SnugLife Image 2">
+                            </div>
+                            <div class="image-box snuglife-large-box">
+                                <img src="a1.png" alt="SnugLife Image 3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleProject(projectId) {
+            const content = document.getElementById(projectId);
+            const allContents = document.querySelectorAll('.project-content');
+            allContents.forEach(item => {
+                if (item.id !== projectId) {
+                    item.style.display = 'none';
+                }
+            });
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function smoothScroll(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            if (window.innerWidth <= 768) {
+                toggleMenu();
+            }
+        }
+    </script>
+</body>
+</html>
